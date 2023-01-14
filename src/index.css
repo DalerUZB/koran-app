@@ -1,13 +1,46 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: hsl(0, 7%, 92%);
+  color: rgb(0, 0, 0);
+  transition: 0.3s all cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.dark {
+  background-color: rgb(4, 0, 0);
+  color: rgb(200, 189, 189);
+}
+
+.sectionTimes {
+  background-image: url(./assets/ayahBackground.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.backgroundSurah {
+  background-image: url(./assets/ayahBackground.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.wrapperImage {
+  background-image: url(./assets/ayahBackground.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
