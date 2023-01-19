@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { fetchSuraAudio, fetchSuraname, fetchTranslate } from "../store/action";
+import { fetchSuraname, fetchTranslate } from "../store/action";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { BsInfo } from "react-icons/bs";
 import Modal from "react-modal";
@@ -14,35 +14,26 @@ import ReactAudioPlayer from "react-audio-player";
 const SurahByIdName = () => {
   let obj = [];
   let list = [];
-  let audio = [];
   const body = document.body;
   Modal.setAppElement(body);
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [showTransationQuranUZB, setShowTransationQuranUZB] = useState(false);
-  const [audioSong, setAudioSong] = useState([]);
+  const [numberForSec, setNumberForSec] = useState(null);
   const { id } = useParams();
   const dispatch = useDispatch();
-
   const { surahName, surahTranslation, surahAudio, loading } = useSelector(
     (store) => store.reducer
   );
   useEffect(() => {
     dispatch(fetchSuraname(id));
-    dispatch(fetchSuraAudio(id));
     dispatch(fetchTranslate(id));
   }, [dispatch]);
   const { ayahs } = surahName;
+
   if (ayahs) {
     list = ayahs;
   }
-  if (surahAudio.ayahs) {
-    for (const iteratorAudio of surahAudio.ayahs) {
-      audio.push({
-        audioElem: iteratorAudio.audio,
-        number: iteratorAudio.number,
-      });
-    }
-  }
+
   if (surahTranslation.ayahs) {
     for (const iterator of showTransationQuranUZB
       ? surahTranslation.ayahs
@@ -63,7 +54,7 @@ const SurahByIdName = () => {
   function checkedTransation(showEven) {
     setShowTransationQuranUZB(showEven);
   }
-  console.log(audio);
+
   return (
     <Wrapper>
       <Header>
@@ -93,8 +84,10 @@ const SurahByIdName = () => {
             <ClassicSpinner size={50} color="#686769" loading={true} />
           </div>
         ) : (
-          obj?.map((ayah) => (
+          obj?.map((ayah, index) => (
             <ComponentSuraForReed
+              index={index}
+              setNumberForSec={setNumberForSec}
               showTransationQuranUZB={showTransationQuranUZB}
               translate={surahTranslation.ayahs}
               key={ayah.number}
@@ -117,7 +110,12 @@ const SurahByIdName = () => {
             </span>
           </div>
           <div className="two_div">
-            <ReactAudioPlayer className="audioElem" controls />
+            <ReactAudioPlayer
+              className="audioElem"
+              controls
+              autoPlay
+              src={surahAudio.audio}
+            />
           </div>
           <div className="three_div">
             <span className="iconBack">

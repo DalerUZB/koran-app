@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setDarkTheme, setLightTheme } from "../store/reducer";
 
 const Navbar = (props) => {
-  const { glovalTheme, dark, light } = useSelector((store) => store.reducer);
+  const { dark, light } = useSelector((store) => store.reducer);
   const [toggleTheme, setToggleTheme] = useState(false);
   const dispatch = useDispatch();
 
@@ -48,6 +48,9 @@ const Navbar = (props) => {
               <NavLink to={"/tasbeh"}>
                 <li>Tasbeh</li>
               </NavLink>
+              <NavLink to={"/names"}>
+                <li>Names</li>
+              </NavLink>
               <div className="toggleDarkNightDrawer">
                 {toggleTheme ? (
                   <WiDaySunny
@@ -80,6 +83,9 @@ const Navbar = (props) => {
             <span>Ayah</span>
           </NavLink>
           <NavLink to={"/tasbeh"}>{<span>Tasbeh</span>}</NavLink>
+          <NavLink to={"/names"}>
+            <span>Names</span>
+          </NavLink>
           {toggleTheme ? (
             <WiDaySunny className="icon" onClick={() => setLightThemeFunc()} />
           ) : (
@@ -210,7 +216,7 @@ const Wrapper = styled.div`
   .burgerMenu {
     display: none;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 681px) {
     .burgerMenu {
       display: block;
       position: absolute;
@@ -224,7 +230,7 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    @media (max-width: 600px) {
+    @media (max-width: 681px) {
       display: none;
       .burgerMenu {
         display: block;

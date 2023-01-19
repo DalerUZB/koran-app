@@ -20,7 +20,7 @@ class Api {
   async fetchSurahAudio(id) {
     try {
       const result = await axios.get(
-        `http://api.alquran.cloud/v1/surah/${id}/ar.alafasy`
+        `http://api.alquran.cloud/v1/ayah/${id}/ar.alafasy`
       );
       return result.data.data;
     } catch (error) {
@@ -82,7 +82,7 @@ class Api {
       const result = await axios.get(
         `http://api.alquran.cloud/v1/ayah/${id}/ar.alafasy`
       );
-      return result.data.data
+      return result.data.data;
     } catch (error) {
       console.log(error);
     }
@@ -95,6 +95,24 @@ class Api {
       return result.data;
     } catch (error) {
       toast.info("notugri bosildi");
+    }
+  }
+  async fetchLordNames() {
+    try {
+      const result = await axios.get("https://api.aladhan.com/v1/asmaAlHusna");
+      return result.data.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async fetchName(number) {
+    try {
+      const reslut = await axios.get(
+        `https://api.aladhan.com/v1/asmaAlHusna/${number}`
+      );
+      return reslut.data.data
+    } catch (error) {
+      console.log(error);
     }
   }
 }

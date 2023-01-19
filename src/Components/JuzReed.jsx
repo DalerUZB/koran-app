@@ -8,11 +8,11 @@ import { ArabicNumbers } from "react-native-arabic-numbers";
 import { ClassicSpinner } from "react-spinners-kit";
 
 const JuzReed = () => {
-  const [showTranslate, setShowTranslate] = useState(false);
   let objAll = [];
   const { juz, juzUZ, loading } = useSelector((store) => store.reducer);
   const dispatch = useDispatch();
   const { idJuz } = useParams();
+  const [showTranslate, setShowTranslate] = useState(false);
   useState(() => {
     dispatch(fetchJuz(idJuz));
     dispatch(fetchJuzUZB(idJuz));
@@ -27,7 +27,7 @@ const JuzReed = () => {
       });
     }
   }
-  
+
   return (
     <Wrapper>
       {loading ? (
@@ -37,7 +37,10 @@ const JuzReed = () => {
       ) : (
         <div className="container">
           {objAll?.map((item) => (
-            <JuzComponents key={item.number} variant={showTranslate}>
+            <JuzComponents
+              key={item.number}
+              variant={showTranslate}
+            >
               <span>{item.text}</span>
               <span className="Span-number">
                 {showTranslate
@@ -50,7 +53,7 @@ const JuzReed = () => {
       )}
       {!loading && (
         <Footer>
-          <div>
+          <div className="first_div">
             <span className="language">
               <input
                 type="checkbox"
@@ -61,21 +64,12 @@ const JuzReed = () => {
               <label htmlFor="vehicle1">Translat</label>
             </span>
           </div>
-          <div>
-            <audio controls className="audio">
-              <source src="horse.ogg" type="audio/ogg" />
-              <source src="horse.mp3" type="audio/mpeg" />
-              Your browser does not support the audio tag.
-            </audio>
-          </div>
         </Footer>
       )}
     </Wrapper>
   );
 };
-
 export default JuzReed;
-
 const Wrapper = styled.div`
   max-width: 100%;
   height: 89.1vh;
@@ -96,7 +90,6 @@ const Wrapper = styled.div`
     border: 1px solid;
   }
 `;
-
 const JuzComponents = styled.p`
   box-shadow: 0px 0px 10px 2px;
   padding: 30px;
@@ -116,38 +109,19 @@ const JuzComponents = styled.p`
     display: block;
   }
 `;
-
 const Footer = styled.div`
-  border: 1px solid;
-  width: 100%;
-  height: 100%;
-  min-height: 11.6%;
-  border: 1px solid;
   display: flex;
+  align-items: center;
   justify-content: space-around;
+  margin: 0 auto;
+  width: 80%;
+  .first_div {
+    width: 50%;
+    height: 40px;
+  }
   div {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    gap: 12px;
-  }
-  .language {
-    min-height: 10px;
-    max-height: auto;
-  }
-  .audio {
-    width: 188px;
-  }
-  .iconBack {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    .big {
-      width: 20px;
-      height: 30px;
-      color: ${(props) => props.theme.color};
-      margin-top: 2px;
-    }
   }
 `;

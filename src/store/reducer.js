@@ -4,8 +4,9 @@ import {
   fetchAyahAudio,
   fetchAyahUZ,
   fetchJuz,
-  fetchJuzUZ,
   fetchJuzUZB,
+  fetchName,
+  fetchNameLord,
   fetchSuraAudio,
   fetchSurah,
   fetchSuraname,
@@ -16,6 +17,7 @@ import {
 const state = {
   loading: false,
   loader: false,
+  loaderNameLord: false,
   dark: "dark",
   light: "light",
   quranNameList: [],
@@ -36,6 +38,8 @@ const state = {
   ayahs: [],
   ayahsUZ: [],
   surahTranslation: [],
+  namesLord: [],
+  nameLord: [],
 };
 
 export const quranAPP = createSlice({
@@ -48,7 +52,11 @@ export const quranAPP = createSlice({
     setLightTheme(state) {
       state.glovalTheme = false;
     },
+    clearSurahAudio(state) {
+      state.surahAudio = [];
+    },
   },
+
   extraReducers: (builder) => {
     builder.addCase(fetchSurah.fulfilled, (state, action) => {
       state.quranNameList = action.payload;
@@ -103,16 +111,29 @@ export const quranAPP = createSlice({
     builder.addCase(fetchAyahAudio.fulfilled, (state, action) => {
       state.ayahAudio = action.payload;
     });
-
     builder.addCase(fetchAyahUZ.fulfilled, (state, action) => {
       state.ayahsUZ = action.payload;
     });
     builder.addCase(fetchTranslate.fulfilled, (state, { payload }) => {
       state.surahTranslation = payload;
     });
+    builder.addCase(fetchNameLord.fulfilled, (state, { payload }) => {
+      state.namesLord = payload;
+    });
+    builder.addCase(fetchName.pending, (state, { payload }) => {
+      state.loaderNameLord = true;
+    });
+    builder.addCase(fetchName.fulfilled, (state, { payload }) => {
+      state.nameLord = payload;
+      state.loaderNameLord = false;
+    });
+    builder.addCase(fetchName.rejected, (state, { payload }) => {
+      state.loaderNameLord = false;
+    });
   },
 });
 
-export const { setDarkTheme, setLightTheme } = quranAPP.actions;
+export const { setDarkTheme, setLightTheme, clearSurahAudio } =
+  quranAPP.actions;
 
 export default quranAPP.reducer;

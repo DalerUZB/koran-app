@@ -1,22 +1,16 @@
-import React from 'react'
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import styled from 'styled-components'
-import JuzComponent from '../Components/JuzComponent'
-import { fetchJuz } from '../store/action'
+import React from "react";
+import styled from "styled-components";
+import JuzComponent from "../Components/JuzComponent";
 
 const Juz = () => {
+  let counter = [];
 
-  let counter = []
-  
   function settingsCounter() {
     for (let i = 1; i <= 30; i++) {
-      counter.push({ "counts": i })
+      counter.push({ counts: i });
     }
   }
-  settingsCounter()
-
+  settingsCounter();
 
   return (
     <Wrapper>
@@ -26,10 +20,10 @@ const Juz = () => {
         ))}
       </div>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default Juz
+export default Juz;
 
 const Wrapper = styled.div`
   width: 100%;
@@ -38,7 +32,7 @@ const Wrapper = styled.div`
   background-color: ${(props) => props.theme.backgrounColor};
   padding-top: 5%;
   text-align: center;
-  .container{
+  .container {
     width: 90%;
     height: 50%;
     min-height: 200px;
@@ -51,4 +45,4 @@ const Wrapper = styled.div`
     gap: 12px;
     padding: 10px;
   }
-`
+`;

@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { fetchSurah } from "../store/action";
 import SurahApp from "../Components/SurahComponent";
+import { clearSurahAudio } from "../store/reducer";
 
 const Surah = () => {
   const dispatch = useDispatch();
   const { quranNameList } = useSelector((store) => store.reducer);
   useEffect(() => {
     dispatch(fetchSurah());
-  }, []);
+    dispatch(clearSurahAudio());
+  }, [dispatch]);
   return (
     <Wrapper className="backgroundSurah">
       <div className="containerQuranList">
