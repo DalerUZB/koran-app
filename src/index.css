@@ -44,7 +44,3 @@ code {
   background-size: cover;
   background-repeat: no-repeat;
 }
-
-.active {
-  border-bottom: 1px solid red;
-}
