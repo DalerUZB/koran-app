@@ -196,6 +196,7 @@ const Footer = styled.div`
   flex-direction: column;
   border: 1px solid;
   display: flex;
+  border-radius: 12px;
   div {
     width: 100%;
     display: flex;

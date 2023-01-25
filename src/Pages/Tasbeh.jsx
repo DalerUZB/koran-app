@@ -99,16 +99,14 @@ const Wrapper = styled.div`
     text-align: center;
     .radius {
       margin: 0 auto;
-      width: 300px;
-      max-width: 100%;
-      height: 100%;
-      border: 5px solid #06ea34;
-      border-radius: 50%;
-      padding-top: 95px;
+      transition: 0.3s all cubic-bezier(0.165, 0.84, 0.44, 1);
     }
     h1 {
+      display: inline-block;
       font-size: 60px;
       font-weight: 500;
+      border-bottom: 5px solid green;
+      border-radius: 10px;
     }
   }
   .bottom_div {

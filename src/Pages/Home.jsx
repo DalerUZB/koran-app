@@ -1,4 +1,6 @@
+import axios from "axios";
 import React, { useRef } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { fetchTaqvim } from "../store/action";
@@ -13,7 +15,11 @@ const Home = () => {
     dispatch(fetchTaqvim(nameRef.current.value));
     nameRef.current.value = "";
   }
-
+  useEffect(() => {
+    axios
+      .get("https://api.alquran.cloud/v1/surah")
+      .then(({ data }) => console.log(data));
+  }, []);
   return (
     <Wrapper>
       <div className="headerTimes">

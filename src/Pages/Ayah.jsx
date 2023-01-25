@@ -5,11 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAyah, fetchAyahAudio, fetchAyahUZ } from "../store/action";
 import ReactAudioPlayer from "react-audio-player";
 import { toast } from "react-toastify";
-import { ClassicSpinner, PushSpinner } from "react-spinners-kit";
+import { ClassicSpinner } from "react-spinners-kit";
 
 const Ayah = () => {
   const [showTranslate, setShowTranslate] = useState(false);
-  const [playMusik, setPlayMusik] = useState(false);
   const listArrayData = [];
   let arrayList = {
     nameSurah: [],

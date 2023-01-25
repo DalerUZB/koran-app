@@ -4,10 +4,13 @@ import styled from "styled-components";
 import { fetchSurah } from "../store/action";
 import SurahApp from "../Components/SurahComponent";
 import { clearSurahAudio } from "../store/reducer";
+import { ClassicSpinner } from "react-spinners-kit";
 
 const Surah = () => {
   const dispatch = useDispatch();
-  const { quranNameList } = useSelector((store) => store.reducer);
+  const { quranNameList, loadingForNameSura } = useSelector(
+    (store) => store.reducer
+  );
   useEffect(() => {
     dispatch(fetchSurah());
     dispatch(clearSurahAudio());
@@ -18,9 +21,15 @@ const Surah = () => {
         <h1 className="bismillah"> بِسْمِ ٱللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</h1>
         <hr />
         <div className="containerQuranScrollSurah">
-          {quranNameList?.map((item) => (
-            <SurahApp {...item} key={item.number} />
-          ))}
+          {!loadingForNameSura ? (
+            quranNameList?.map((item) => (
+              <SurahApp {...item} key={item.number} />
+            ))
+          ) : (
+            <div className="spinner">
+              <ClassicSpinner size={50} color="#555" />
+            </div>
+          )}
         </div>
       </div>
     </Wrapper>
@@ -33,6 +42,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: calc(100vh - 70.3px);
   .containerQuranList {
+    text-align: center;
     width: 80%;
     height: calc(100vh - 80px);
     border-radius: 4px;
@@ -45,7 +55,6 @@ const Wrapper = styled.div`
       width: 100%;
     }
     .bismillah {
-      text-align: right;
       font-family: "Kitab";
       padding-bottom: 45px;
       font-size: 33px;
@@ -60,6 +69,11 @@ const Wrapper = styled.div`
       margin-top: 11.5px;
       margin-bottom: 11.5px;
       font-size: 24px;
+    }
+    .spinner {
+      position: absolute;
+      right: 10%;
+      transform: translate(-50%, 50%);
     }
   }
   .containerQuranScrollSurah {

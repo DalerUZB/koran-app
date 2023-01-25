@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 class Api {
   async fetchSurahApi() {
     try {
-      const result = await axios.get("http://api.alquran.cloud/v1/surah");
+      const result = await axios.get("https://api.alquran.cloud/v1/surah");
       return result.data.data;
     } catch (error) {
       console.log(error);
@@ -11,7 +11,9 @@ class Api {
   }
   async fetchSurahByName(id) {
     try {
-      const result = await axios.get(`http://api.alquran.cloud/v1/surah/${id}`);
+      const result = await axios.get(
+        `https://api.alquran.cloud/v1/surah/${id}`
+      );
       return result.data.data;
     } catch (error) {
       console.log(error);
@@ -20,7 +22,7 @@ class Api {
   async fetchSurahAudio(id) {
     try {
       const result = await axios.get(
-        `http://api.alquran.cloud/v1/ayah/${id}/ar.alafasy`
+        `https://api.alquran.cloud/v1/ayah/${id}/ar.alafasy`
       );
       return result.data.data;
     } catch (error) {
@@ -50,7 +52,7 @@ class Api {
   async fetchJuzUZ(id) {
     try {
       const result = await axios.get(
-        `http://api.alquran.cloud/v1/juz/${id}/uz.sodik`
+        `https://api.alquran.cloud/v1/juz/${id}/uz.sodik`
       );
       return result.data.data;
     } catch (error) {
@@ -60,7 +62,7 @@ class Api {
   async fetchAyah(number) {
     try {
       const result = await axios.get(
-        `http://api.alquran.cloud/v1/ayah/${number}`
+        `https://api.alquran.cloud/v1/ayah/${number}`
       );
       return result.data.data;
     } catch (error) {
@@ -70,7 +72,7 @@ class Api {
   async fetchAyahUZ(number) {
     try {
       const result = await axios.get(
-        `http://api.alquran.cloud/v1/ayah/${number}/uz.sodik`
+        `https://api.alquran.cloud/v1/ayah/${number}/uz.sodik`
       );
       return result.data.data;
     } catch (error) {
@@ -80,7 +82,7 @@ class Api {
   async fetchAyahAudio(id) {
     try {
       const result = await axios.get(
-        `http://api.alquran.cloud/v1/ayah/${id}/ar.alafasy`
+        `https://api.alquran.cloud/v1/ayah/${id}/ar.alafasy`
       );
       return result.data.data;
     } catch (error) {
@@ -110,7 +112,7 @@ class Api {
       const reslut = await axios.get(
         `https://api.aladhan.com/v1/asmaAlHusna/${number}`
       );
-      return reslut.data.data
+      return reslut.data.data;
     } catch (error) {
       console.log(error);
     }

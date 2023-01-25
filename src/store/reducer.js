@@ -17,6 +17,7 @@ import {
 const state = {
   loading: false,
   loader: false,
+  loadingForNameSura: false,
   loaderNameLord: false,
   dark: "dark",
   light: "light",
@@ -58,8 +59,15 @@ export const quranAPP = createSlice({
   },
 
   extraReducers: (builder) => {
+    builder.addCase(fetchSurah.pending, (state, action) => {
+      state.loadingForNameSura = true;
+    });
     builder.addCase(fetchSurah.fulfilled, (state, action) => {
       state.quranNameList = action.payload;
+      state.loadingForNameSura = false;
+    });
+    builder.addCase(fetchSurah.rejected, (state, action) => {
+      state.loadingForNameSura = false;
     });
     builder.addCase(fetchTaqvim.fulfilled, (state, action) => {
       state.taqvimTimeListName = action.payload;
@@ -73,11 +81,11 @@ export const quranAPP = createSlice({
     builder.addCase(fetchSuraname.pending, (state, action) => {
       state.loading = true;
     });
-    builder.addCase(fetchSuraname.rejected, (state, action) => {
-      state.loading = false;
-    });
     builder.addCase(fetchSuraname.fulfilled, (state, action) => {
       state.surahName = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(fetchSuraname.rejected, (state, action) => {
       state.loading = false;
     });
     builder.addCase(fetchSuraAudio.fulfilled, (state, action) => {
